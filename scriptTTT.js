@@ -1,6 +1,13 @@
 let symbol = ""
-const boardVal = [0,0,0,0,0,0,0,0,0,0]
-const winLine = [0,0,0,0,0,0,0,0,0]
+const winLine = [[0,0,0,0],
+                 [0,1,2,3],
+                 [0,4,5,6],
+                 [0,7,8,9],
+                 [0,1,4,7],
+                 [0,2,5,8],
+                 [0,3,6,9],
+                 [0,1,5,9],
+                 [0,7,5,3]]
 let emptyBoxes = 9
 
 function startGame() {
@@ -37,28 +44,31 @@ function updateBoard(idNr) {
         return
     }
     document.getElementById(idNr).innerText = symbol
+    let modifier = -1
     if(symbol == "X") {
-        boardVal[idNr] += 1
-    } else {
-        boardVal[idNr] -= 1
+        modifier = 1
     }
+    updateWline(idNr, modifier)
     --emptyBoxes
     if (!checkWin()) {
         playerInfo()
     }
 }
 
+function updateWline(idNr, modifier) {
+    for (let i = 1; i <= 8; ++i) {
+        for (let j = 1; j <= 3; ++j) {
+            if (winLine[i][j] == idNr) {
+                winLine[i][0] += modifier
+            }
+        }
+    }
+}
+
 function checkWin() {
-    winLine[1] = boardVal[1] + boardVal[2] + boardVal[3]
-    winLine[2] = boardVal[4] + boardVal[5] + boardVal[6]
-    winLine[3] = boardVal[7] + boardVal[8] + boardVal[9]
-    winLine[4] = boardVal[1] + boardVal[4] + boardVal[7]
-    winLine[5] = boardVal[2] + boardVal[5] + boardVal[8]
-    winLine[6] = boardVal[3] + boardVal[6] + boardVal[9]
-    winLine[7] = boardVal[1] + boardVal[5] + boardVal[9]
-    winLine[8] = boardVal[7] + boardVal[5] + boardVal[3]
     for (let i = 1; i <= 8; ++i) {    
-        if (winLine[i] == 3 || winLine[i] == -3) {
+        if (winLine[i][0] == 3 || winLine[i][0] == -3) {
+            showLine(i, winLine[i][0])
             document.getElementById("player").innerText = "WIN"
             document.getElementById("infoArea").innerHTML += '\
             <button onclick="resetGame()">Play Again</button>'
@@ -72,6 +82,16 @@ function checkWin() {
         <div class="resultDraw">DRAW</div>\
         <button onclick="resetGame()">Play Again</button>'
         return true
+    }
+}
+
+function showLine(lineNr, value) {
+    let color = "rgb(245 139 78)"
+    if (value > 0) {
+        color = "rgb(169, 240, 182)"
+    }
+    for (let i = 1; i <= 3; ++i) {
+        document.getElementById(winLine[lineNr][i]).style.backgroundColor = color
     }
 }
 
