@@ -1,0 +1,42 @@
+.grid-container {
+    display: grid;
+    width: 365px;
+    margin: 5px;
+    padding: 5px;
+    grid-template-columns: 50px 50px 50px 200px;
+    grid-template-rows: repeat(3, 50px);
+    align-content: center;
+    row-gap: 5px;
+    column-gap:5px;
+    border-color: black;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.grid-item {
+    background-color: white;
+    text-align: center;
+    padding: 5px 0px;
+    font-size: 40px;  
+}
+
+.infoArea {
+    background-color: rgb(236 236 236);
+    grid-column: 4 / 4;
+    grid-row: 1 / 4;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 20px;
+}
+
+.currentPlayer {
+    padding-top: 20px;
+    padding-bottom: 3px;
+    font-size: 60px;
+}
+
+.resultDraw {
+    padding-top: 40px;
+    font-size: 60px;
+}
