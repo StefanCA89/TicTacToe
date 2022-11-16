@@ -2,7 +2,7 @@
     display: grid;
     width: 365px;
     margin: 50px;
-    padding: 10px;
+    padding: 5px;
     grid-template-columns: 50px 50px 50px 200px;
     grid-template-rows: repeat(3, 50px);
     align-content: center;
