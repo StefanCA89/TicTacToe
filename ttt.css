@@ -1,8 +1,8 @@
 .grid-container {
     display: grid;
     width: 365px;
-    margin: 5px;
-    padding: 5px;
+    margin: 50px;
+    padding: 10px;
     grid-template-columns: 50px 50px 50px 200px;
     grid-template-rows: repeat(3, 50px);
     align-content: center;
