@@ -1,4 +1,5 @@
 let symbol = ""
+let playerId = 1
 const winLine = [[0,0,0,0],
                  [0,1,2,3],
                  [0,4,5,6],
@@ -14,25 +15,24 @@ function startGame() {
     for (let i = 1; i <= 9; ++i) {
         document.getElementById(i).innerText= ""
     }
-    document.getElementById("infoArea").value = 1
     playerInfo()
 }
 
 function playerInfo() {
-    if (document.getElementById("infoArea").value == 1) {
+    if (playerId == 1) {
         document.getElementById("infoArea").style.backgroundColor = "rgb(169, 240, 182)"
         document.getElementById("infoArea").innerHTML = '\
         Player 1\
         <div class="currentPlayer" id="player">X</div>'
-        document.getElementById("infoArea").value = 2
         symbol = "X"
-    } else if (document.getElementById("infoArea").value == 2) {
+        playerId = 2
+    } else if (playerId == 2) {
         document.getElementById("infoArea").style.backgroundColor = "rgb(245 139 78)"
         document.getElementById("infoArea").innerHTML = '\
         Player 2\
         <div class="currentPlayer" id="player">O</div>'
-        document.getElementById("infoArea").value = 1
-        symbol = "O" 
+        symbol = "O"
+        playerId = 1 
     }
 }
 
@@ -85,9 +85,9 @@ function checkWin() {
     }
 }
 
-function showLine(lineNr, value) {
+function showLine(lineNr, lineVal) {
     let color = "rgb(245 139 78)"
-    if (value > 0) {
+    if (lineVal > 0) {
         color = "rgb(169, 240, 182)"
     }
     for (let i = 1; i <= 3; ++i) {
